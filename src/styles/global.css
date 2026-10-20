@@ -1,0 +1,299 @@
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-body);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: 3px;
+}
+
+/* ---------- App shell ---------- */
+.app {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.screen {
+  position: relative;
+  z-index: 1;
+  max-width: var(--page-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+  padding-block: 12px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---------- Decorations (aria-hidden, never interactive) ---------- */
+.decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.blob--yellow-top {
+  width: 220px;
+  height: 160px;
+  inset-block-start: -60px;
+  inset-inline-start: -70px;
+  background: var(--color-background);
+}
+
+.blob--blue-top {
+  width: 180px;
+  height: 140px;
+  inset-block-start: 40px;
+  inset-inline-end: -90px;
+  background: var(--color-surface);
+}
+
+.blob--yellow-bottom {
+  width: 240px;
+  height: 160px;
+  inset-block-end: -80px;
+  inset-inline-end: -80px;
+  background: var(--color-background);
+}
+
+.blob--blue-bottom {
+  width: 200px;
+  height: 140px;
+  inset-block-end: -60px;
+  inset-inline-start: -90px;
+  background: var(--color-surface);
+}
+
+.deco-star {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+}
+
+.deco-star--1 {
+  inset-block-start: 120px;
+  inset-inline-end: 18px;
+}
+
+.deco-star--2 {
+  inset-block-start: 300px;
+  inset-inline-start: 14px;
+}
+
+/* ---------- Top bar ---------- */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+}
+
+/* Language button sits at the inline end (left in RTL), as in the wireframes */
+.top-bar__end {
+  margin-inline-start: auto;
+}
+
+.lang-button,
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--touch-min);
+  padding-inline: 14px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-button);
+  background: var(--color-page);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-body);
+}
+
+.lang-button {
+  border-color: var(--color-primary-light);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* Arrow glyphs point "forward" (inline end); flip according to text direction.
+   In RTL forward = left, back = right. */
+.arrow--forward {
+  transform: scaleX(1);
+}
+.arrow--back {
+  transform: scaleX(-1);
+}
+[dir='rtl'] .arrow--forward {
+  transform: scaleX(-1);
+}
+[dir='rtl'] .arrow--back {
+  transform: scaleX(1);
+}
+
+/* ---------- Navigation buttons (home) ---------- */
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nav-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 60px;
+  padding-inline: 56px;
+  border: none;
+  border-radius: var(--radius-button);
+  font-size: 22px;
+  font-weight: 700;
+  box-shadow: var(--shadow-card);
+}
+
+.nav-button .icon {
+  position: absolute;
+  inset-inline-end: 20px;
+  width: 26px;
+  height: 26px;
+}
+
+.nav-button--primary {
+  background: var(--color-primary);
+  color: var(--color-page);
+}
+
+.nav-button--secondary {
+  background: var(--color-secondary-fill);
+  color: var(--color-primary);
+}
+
+/* ---------- Home ---------- */
+.home {
+  text-align: center;
+  align-items: stretch;
+}
+
+.home__title-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-block-start: 8px;
+}
+
+.home__title {
+  position: relative;
+  display: inline-block;
+  padding: 6px 28px;
+  font-size: var(--font-h1);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+/* Soft yellow blob behind the app name */
+.home__title::before {
+  content: '';
+  position: absolute;
+  inset: -6px -10px;
+  z-index: -1;
+  background: var(--color-accent-yellow);
+  opacity: 0.45;
+  border-radius: 48% 52% 45% 55% / 60% 50% 50% 40%;
+}
+
+.home__subtitle {
+  font-size: 18px;
+}
+
+.home__illustration {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  max-height: 34dvh;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+/* ---------- Secondary screen placeholders ---------- */
+.screen-title {
+  position: relative;
+  align-self: center;
+  padding: 4px 18px;
+  font-size: var(--font-h2);
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.screen-title::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-accent-yellow);
+  opacity: 0.55;
+  border-radius: 40% 60% 55% 45% / 55% 45% 55% 45%;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 360px) {
+  .home__title {
+    font-size: 34px;
+  }
+  .nav-button {
+    font-size: 20px;
+  }
+}

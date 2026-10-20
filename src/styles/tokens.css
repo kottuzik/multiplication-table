@@ -1,0 +1,31 @@
+/* Design tokens from DESIGN.md (Style Guide 2.1–2.4) */
+:root {
+  --color-primary: #4a5b8f;
+  --color-primary-light: #6e8ed6;
+  --color-accent-yellow: #fde74c;
+  --color-background: #fff9d6;
+  --color-surface: #f1f6ff;
+  --color-accent-purple: #b5b3f6;
+  --color-success: #6ccf7f;
+  --color-error: #ff6b6b;
+  --color-text: #2d2d3a;
+  --color-page: #ffffff;
+  /* Light blue fill for secondary buttons (Primary Light at low opacity on white) */
+  --color-secondary-fill: #dbe6fb;
+
+  --font-family: 'Rubik', system-ui, sans-serif;
+  --font-h1: 40px;
+  --font-h2: 28px;
+  --font-h3: 20px;
+  --font-body: 16px;
+  --font-caption: 14px;
+
+  --radius-card: 16px;
+  --radius-button: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 12px rgba(74, 91, 143, 0.1);
+
+  --touch-min: 44px;
+  --page-max-width: 480px;
+  --page-gutter: 16px;
+}
