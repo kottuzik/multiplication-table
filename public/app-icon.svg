@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- App icon for "Times Fun", derived from the home illustration (board + smiling star).
+       Opaque square background; main content kept inside the central safe zone for maskable icons. -->
+  <defs>
+    <path id="star" d="M0,-38 L11.2,-15.4 L36.1,-11.7 L18.1,5.9 L22.3,30.7 L0,19 L-22.3,30.7 L-18.1,5.9 L-36.1,-11.7 L-11.2,-15.4 Z" />
+  </defs>
+
+  <rect width="512" height="512" fill="#FFF9D6" />
+  <ellipse cx="300" cy="190" rx="150" ry="100" fill="#FDE74C" opacity="0.3" />
+
+  <!-- Board -->
+  <g transform="translate(250 245) rotate(-9)">
+    <rect x="-150" y="-92" width="300" height="184" rx="26" fill="#C9D8F5" stroke="#4A5B8F" stroke-width="7" />
+    <rect x="-128" y="-71" width="256" height="142" rx="16" fill="#4A5B8F" />
+    <text x="0" y="20" direction="ltr" text-anchor="middle"
+          font-family="Rubik, 'Arial Rounded MT Bold', Arial, Helvetica, sans-serif"
+          font-weight="700" font-size="58" fill="#FFF9D6">3 × 4 = ?</text>
+  </g>
+
+  <!-- Smiling star -->
+  <g transform="translate(362 352) rotate(10) scale(1.55)">
+    <use href="#star" fill="#FDE74C" stroke="#2D2D3A" stroke-width="3" stroke-linejoin="round" />
+    <circle cx="-7" cy="-2" r="2.8" fill="#2D2D3A" />
+    <circle cx="7" cy="-2" r="2.8" fill="#2D2D3A" />
+    <circle cx="-12" cy="5" r="3" fill="#FF6B6B" opacity="0.35" />
+    <circle cx="12" cy="5" r="3" fill="#FF6B6B" opacity="0.35" />
+    <path d="M-6 6 Q0 12 6 6" fill="none" stroke="#2D2D3A" stroke-width="2.4" stroke-linecap="round" />
+  </g>
+</svg>

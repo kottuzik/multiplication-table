@@ -59,3 +59,5 @@
 > Claude ממלא זאת ברגע שהאפליקציה יכולה לרוץ (בדרך כלל בסיום Milestone 1), ומעדכן אם משהו משתנה.
 - **הרצה (dev):** `npm run dev` ← לפתוח http://localhost:5173/multiplication-table/
 - **בדיקות (test):** `npm test`
+- **בדיקת PWA / Offline (build + preview):** `npm run build && npm run preview` ← לפתוח http://localhost:4173/multiplication-table/ (ה-Service Worker לא פועל ב-`npm run dev`)
+- **יצירת אייקונים מחדש (אחרי שינוי ב-`public/app-icon.svg`):** `npm run generate-icons`

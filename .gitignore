@@ -80,3 +80,6 @@ desktop.ini
 tmp/
 temp/
 *.tmp
+
+# --- Playwright MCP output ---
+.playwright-mcp/
