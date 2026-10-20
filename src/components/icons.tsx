@@ -27,3 +27,27 @@ export function ChevronIcon({ direction }: { direction: 'forward' | 'back' }) {
     </svg>
   )
 }
+
+export function CheckIcon() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  )
+}
+
+export function CrossIcon() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
+      <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
+    </svg>
+  )
+}
+
+export function StarIcon() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="#FDE74C" stroke="#4A5B8F" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z" />
+    </svg>
+  )
+}

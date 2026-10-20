@@ -1,0 +1,316 @@
+/* ---------- Practice screen (DESIGN 1.2) ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.practice__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Table selector: two rows, chips >= 44x44 ---------- */
+.table-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-selector__title {
+  font-size: var(--font-h3);
+  font-weight: 700;
+}
+
+.table-selector__options {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(var(--touch-min), 1fr));
+  gap: 4px;
+  width: 100%;
+}
+
+.table-chip {
+  min-width: var(--touch-min);
+  min-height: var(--touch-min);
+  padding: 0;
+  border: 1.5px solid var(--color-primary-light);
+  border-radius: 12px;
+  background: var(--color-page);
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.table-chip[aria-pressed='true'] {
+  background: var(--color-accent-yellow);
+  border-color: var(--color-accent-yellow);
+  color: var(--color-primary);
+}
+
+@media (min-width: 380px) {
+  .table-selector__options {
+    gap: 8px;
+  }
+}
+
+/* ---------- Practice card: exercise, answer, actions, feedback ---------- */
+.practice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 16px 12px;
+}
+
+.exercise {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+.answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answer-input {
+  width: 100%;
+  min-height: 56px;
+  padding-inline: 16px;
+  border: 1.5px solid var(--color-primary-light);
+  border-radius: 12px;
+  background: var(--color-page);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 22px;
+  text-align: center;
+}
+
+.answer-input::placeholder {
+  color: #8a8a96;
+  font-size: 18px;
+}
+
+.answer-input:focus-visible {
+  outline-offset: 1px;
+}
+
+.answer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.check-button,
+.skip-button {
+  min-height: 56px;
+  border-radius: var(--radius-button);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Check is the main, wider button (about two thirds); first in DOM = start side. */
+.check-button {
+  flex: 2;
+  border: none;
+  background: var(--color-accent-yellow);
+  color: var(--color-primary);
+  box-shadow: 0 3px 0 #e6cf2e;
+}
+
+.skip-button {
+  flex: 1;
+  border: 1.5px solid var(--color-primary);
+  background: var(--color-page);
+  color: var(--color-primary);
+}
+
+/* Feedback sits right under the buttons; fixed min-height avoids layout jumps. */
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  color: var(--color-text);
+  font-weight: 700;
+  text-align: center;
+}
+
+.feedback--correct {
+  background: #e3f6e7;
+  border-color: var(--color-success);
+}
+.feedback--correct .icon {
+  color: #2f9e48;
+}
+
+.feedback--wrong {
+  background: #ffe6e6;
+  border-color: var(--color-error);
+}
+.feedback--wrong .icon {
+  color: #d63b3b;
+}
+
+.feedback--empty {
+  background: var(--color-page);
+  border-color: var(--color-primary-light);
+  font-weight: 400;
+}
+
+/* ---------- Counter ---------- */
+.counter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.counter-card__label {
+  font-size: var(--font-caption);
+}
+
+.counter-card__value {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-primary);
+}
+
+.finish-button {
+  align-self: center;
+  min-height: var(--touch-min);
+  padding-inline: 16px;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- Summary dialog ---------- */
+.summary-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--page-gutter);
+  background: rgba(45, 45, 58, 0.55);
+}
+
+.summary-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: calc(var(--page-max-width) - 2 * var(--page-gutter));
+  max-height: calc(100dvh - 2 * var(--page-gutter));
+  padding: 20px;
+  border-radius: var(--radius-card);
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+}
+
+.summary-dialog__title {
+  font-size: var(--font-h2);
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.summary-dialog__subtitle {
+  font-size: var(--font-h3);
+  font-weight: 700;
+}
+
+/* Only the list scrolls when long. */
+.summary-dialog__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.summary-dialog__item {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--color-surface);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.summary-dialog__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-block: 12px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.summary-dialog__empty .icon {
+  width: 32px;
+  height: 32px;
+}
+
+.summary-dialog__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.summary-dialog__solve,
+.summary-dialog__done {
+  flex: 1;
+  min-height: 52px;
+  border-radius: var(--radius-button);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Main action: go back and solve the skipped exercises */
+.summary-dialog__solve {
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-page);
+}
+
+.summary-dialog__done {
+  border: 1.5px solid var(--color-primary);
+  background: var(--color-page);
+  color: var(--color-primary);
+}
+
+/* With nothing skipped, "Done" is the only (main) action */
+.summary-dialog__done:only-child {
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-page);
+}
