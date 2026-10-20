@@ -1,0 +1,99 @@
+/* ---------- About screen (DESIGN 1.3) ---------- */
+.about {
+  gap: 18px;
+}
+
+.about__text {
+  text-align: center;
+}
+
+.about__divider {
+  width: 100%;
+  margin: 0;
+  border: none;
+  border-block-start: 1.5px solid var(--color-secondary-fill);
+}
+
+.about__table-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Yellow highlight behind the section title, as in the mockup */
+.about__table-title {
+  position: relative;
+  padding: 2px 16px;
+  font-size: var(--font-h3);
+  font-weight: 700;
+  text-align: center;
+}
+
+.about__table-title::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-accent-yellow);
+  opacity: 0.55;
+  border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+}
+
+/* ---------- 10×10 table: fits 320px wide screens without scrolling ---------- */
+.times-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid #c9d6f2;
+  border-radius: 12px;
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+  font-size: var(--font-caption);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.times-table th,
+.times-table td {
+  padding: 7px 0;
+  border-inline-end: 1px solid #dbe4f6;
+  border-block-end: 1px solid #dbe4f6;
+}
+
+.times-table tr > :last-child {
+  border-inline-end: none;
+}
+
+.times-table tbody tr:last-child > * {
+  border-block-end: none;
+}
+
+.times-table th {
+  background: var(--color-secondary-fill);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.times-table td:nth-child(odd) {
+  background: var(--color-surface);
+}
+
+.times-table th.times-table__corner {
+  background: var(--color-primary);
+  color: var(--color-page);
+}
+
+@media (max-width: 360px) {
+  .times-table {
+    font-size: 12.5px;
+  }
+  .times-table th,
+  .times-table td {
+    padding-block: 6px;
+  }
+}

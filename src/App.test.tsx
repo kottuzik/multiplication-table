@@ -53,4 +53,17 @@ describe('App navigation', () => {
     })
     expect(screen.getByRole('button', { name: he.practiceButton })).toBeInTheDocument()
   })
+
+  it('after a reload on a secondary screen, Back from practice still returns home', async () => {
+    // Simulates the browser restoring the "about" history entry on reload.
+    window.history.pushState({ screen: 'about' }, '')
+    const user = userEvent.setup()
+    render(<App />)
+    expect(window.history.state).toBeNull()
+
+    await user.click(screen.getByRole('button', { name: he.practiceButton }))
+    await user.click(screen.getByRole('button', { name: he.back }))
+    expect(await screen.findByRole('button', { name: he.practiceButton })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { level: 1, name: he.aboutTitle })).not.toBeInTheDocument()
+  })
 })

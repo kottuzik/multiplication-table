@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useReducer, useState } from 'react'
 import { Decorations } from './components/Decorations'
+import { LanguageProvider } from './i18n/LanguageContext'
 import { initialPracticeState, practiceReducer } from './practice/practiceState'
 import { AboutScreen } from './screens/AboutScreen'
 import { HomeScreen } from './screens/HomeScreen'
@@ -20,6 +21,11 @@ export default function App() {
   // ADR-1: keep the device/browser Back button in sync with in-app navigation
   // without changing the URL and without a router.
   useEffect(() => {
+    // A reload always opens home, but the browser keeps the old entry's state
+    // (e.g. "about"). Clear it so a later Back lands on home, not that screen.
+    if (isScreen((window.history.state as { screen?: unknown } | null)?.screen)) {
+      window.history.replaceState(null, '')
+    }
     const onPopState = (event: PopStateEvent) => {
       const target = (event.state as { screen?: unknown } | null)?.screen
       setScreen(isScreen(target) ? target : 'home')
@@ -51,13 +57,15 @@ export default function App() {
   }, [])
 
   return (
-    <div className="app">
-      <Decorations />
-      {screen === 'home' && (
-        <HomeScreen onPractice={() => openScreen('practice')} onAbout={() => openScreen('about')} />
-      )}
-      {screen === 'practice' && <PracticeScreen state={practice} dispatch={dispatch} onBack={goBack} onDone={finishPractice} />}
-      {screen === 'about' && <AboutScreen onBack={goBack} />}
-    </div>
+    <LanguageProvider>
+      <div className="app">
+        <Decorations />
+        {screen === 'home' && (
+          <HomeScreen onPractice={() => openScreen('practice')} onAbout={() => openScreen('about')} />
+        )}
+        {screen === 'practice' && <PracticeScreen state={practice} dispatch={dispatch} onBack={goBack} onDone={finishPractice} />}
+        {screen === 'about' && <AboutScreen onBack={goBack} />}
+      </div>
+    </LanguageProvider>
   )
 }

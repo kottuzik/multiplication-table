@@ -213,11 +213,32 @@
   position: fixed;
   inset: 0;
   z-index: 10;
+  background: rgba(45, 45, 58, 0.55);
+}
+
+/* Transparent modal area laid out like .screen, so the language button
+   sits exactly where it is in the top bar. */
+.summary-modal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: var(--page-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+  padding-block: 12px var(--page-gutter);
+}
+
+.summary-modal__bar {
+  flex-shrink: 0;
+}
+
+.summary-modal__body {
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--page-gutter);
-  background: rgba(45, 45, 58, 0.55);
+  padding-block-end: 56px;
 }
 
 .summary-dialog {
@@ -225,8 +246,7 @@
   flex-direction: column;
   gap: 14px;
   width: 100%;
-  max-width: calc(var(--page-max-width) - 2 * var(--page-gutter));
-  max-height: calc(100dvh - 2 * var(--page-gutter));
+  max-height: 100%;
   padding: 20px;
   border-radius: var(--radius-card);
   background: var(--color-page);

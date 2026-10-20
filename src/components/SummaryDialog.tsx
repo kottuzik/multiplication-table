@@ -3,6 +3,7 @@ import type { KeyboardEvent } from 'react'
 import { useStrings } from '../i18n/strings'
 import type { Exercise } from '../practice/exercise'
 import { StarIcon } from './icons'
+import { LanguageButton } from './LanguageButton'
 
 type Props = {
   skipped: Exercise[]
@@ -15,6 +16,8 @@ const FOCUSABLE = 'button, [href], input, [tabindex]:not([tabindex="-1"])'
 
 // Custom modal instead of native <dialog>: on Android the device Back button would
 // only close a native dialog, while the PRD requires it to return home (ADR-4).
+// The modal also repeats the language button above the backdrop, in the same spot as
+// in the top bar, so the language can be switched while the summary is open (ADR-5).
 export function SummaryDialog({ skipped, onSolve, onDone, onClose }: Props) {
   const t = useStrings()
   const titleId = useId()
@@ -51,47 +54,56 @@ export function SummaryDialog({ skipped, onSolve, onDone, onClose }: Props) {
     <div className="summary-overlay">
       <div
         ref={dialogRef}
-        className="summary-dialog"
+        className="summary-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         onKeyDown={onKeyDown}
       >
-        <h2 id={titleId} className="summary-dialog__title">
-          {t.summaryTitle}
-        </h2>
-        {hasSkipped ? (
-          <>
-            <h3 className="summary-dialog__subtitle">{t.summaryListTitle}</h3>
-            {/* Exercises only, without answers: the child can choose to solve them */}
-            <ul className="summary-dialog__list" tabIndex={0} aria-label={t.summaryListTitle}>
-              {skipped.map((e) => (
-                <li key={`${e.factorA}x${e.factorB}`} className="summary-dialog__item" dir="ltr">
-                  {e.factorA} × {e.factorB}
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <p className="summary-dialog__empty">
-            <StarIcon />
-            <span>{t.summaryEmpty}</span>
-          </p>
-        )}
-        <div className="summary-dialog__actions">
-          {hasSkipped && (
-            <button ref={firstButtonRef} type="button" className="summary-dialog__solve" onClick={onSolve}>
-              {t.solveSkipped}
-            </button>
-          )}
-          <button
-            ref={hasSkipped ? undefined : firstButtonRef}
-            type="button"
-            className="summary-dialog__done"
-            onClick={onDone}
-          >
-            {t.done}
-          </button>
+        <div className="top-bar summary-modal__bar">
+          <div className="top-bar__end">
+            <LanguageButton />
+          </div>
+        </div>
+        <div className="summary-modal__body">
+          <div className="summary-dialog">
+            <h2 id={titleId} className="summary-dialog__title">
+              {t.summaryTitle}
+            </h2>
+            {hasSkipped ? (
+              <>
+                <h3 className="summary-dialog__subtitle">{t.summaryListTitle}</h3>
+                {/* Exercises only, without answers: the child can choose to solve them */}
+                <ul className="summary-dialog__list" tabIndex={0} aria-label={t.summaryListTitle}>
+                  {skipped.map((e) => (
+                    <li key={`${e.factorA}x${e.factorB}`} className="summary-dialog__item" dir="ltr">
+                      {e.factorA} × {e.factorB}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <p className="summary-dialog__empty">
+                <StarIcon />
+                <span>{t.summaryEmpty}</span>
+              </p>
+            )}
+            <div className="summary-dialog__actions">
+              {hasSkipped && (
+                <button ref={firstButtonRef} type="button" className="summary-dialog__solve" onClick={onSolve}>
+                  {t.solveSkipped}
+                </button>
+              )}
+              <button
+                ref={hasSkipped ? undefined : firstButtonRef}
+                type="button"
+                className="summary-dialog__done"
+                onClick={onDone}
+              >
+                {t.done}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
