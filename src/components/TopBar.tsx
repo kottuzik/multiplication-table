@@ -1,5 +1,6 @@
 import { useStrings } from '../i18n/strings'
 import { ChevronIcon } from './icons'
+import { InstallButton } from './InstallButton'
 import { LanguageButton } from './LanguageButton'
 
 type Props = {
@@ -17,6 +18,7 @@ export function TopBar({ onBack }: Props) {
         </button>
       )}
       <div className="top-bar__end">
+        <InstallButton />
         <LanguageButton />
       </div>
     </header>

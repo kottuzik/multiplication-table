@@ -10,6 +10,14 @@ export function GlobeIcon() {
   )
 }
 
+export function DownloadIcon() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14" />
+    </svg>
+  )
+}
+
 // Chevron drawn pointing right; CSS flips it by direction (see .arrow--forward / .arrow--back).
 export function ChevronIcon({ direction }: { direction: 'forward' | 'back' }) {
   return (

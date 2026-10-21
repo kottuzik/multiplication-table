@@ -8,6 +8,7 @@ export type Strings = {
   appName: string
   back: string
   languageButton: string
+  installButton: string
   homeSubtitle: string
   practiceButton: string
   aboutButton: string
@@ -37,6 +38,7 @@ export const strings: Record<Language, Strings> = {
     appName: 'כפל כיף',
     back: 'חזרה',
     languageButton: 'English',
+    installButton: 'התקנה',
     homeSubtitle: 'לומדים את לוח הכפל בכיף!',
     practiceButton: 'בואו נתרגל',
     aboutButton: 'אודות',
@@ -65,6 +67,7 @@ export const strings: Record<Language, Strings> = {
     appName: 'Times Fun',
     back: 'Back',
     languageButton: 'עברית',
+    installButton: 'Install',
     homeSubtitle: 'Learn the times table the fun way!',
     practiceButton: "Let's Practice",
     aboutButton: 'About',

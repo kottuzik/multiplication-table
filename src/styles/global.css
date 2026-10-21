@@ -136,11 +136,15 @@ button {
 
 /* Language button sits at the inline end (left in RTL), as in the wireframes */
 .top-bar__end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-inline-start: auto;
 }
 
 .lang-button,
-.back-button {
+.back-button,
+.install-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -156,6 +160,29 @@ button {
 
 .lang-button {
   border-color: var(--color-primary-light);
+}
+
+/* Filled primary so the one-time install action stands out next to the language button */
+.install-button {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Narrow phones, inner screens: icon only, so Back + Install + language fit in one row.
+   The home screen has no Back button, so the text always fits there.
+   The text stays available to screen readers. */
+@media (max-width: 389px) {
+  .top-bar:has(.back-button) .install-button {
+    padding-inline: 10px;
+  }
+  .top-bar:has(.back-button) .install-button__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
 
 .icon {

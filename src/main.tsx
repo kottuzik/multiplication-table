@@ -8,6 +8,9 @@ import './styles/global.css'
 import './styles/practice.css'
 import './styles/about.css'
 import App from './App.tsx'
+import { listenForInstallPrompt } from './pwa/installPrompt'
+
+listenForInstallPrompt()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
